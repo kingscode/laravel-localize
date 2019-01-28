@@ -1,20 +1,25 @@
 <?php
 
 return [
-    /*
-     |
-     | Putting this to false disables the saving service,
-     | and lets you define your own saving mechanism,
-     |
-     | For times when you want to save multiple translations at a time.
-     |
-     */
-    'use_saving_service' => true,
 
     /*
-     |
-     | The locale key name, used in the translation tables.
-     |
-     */
-    'locale_key_name' => 'locale',
+    |--------------------------------------------------------------------------
+    | Default Locale
+    |--------------------------------------------------------------------------
+    |
+    | This option makes it so that "/nl/home" is never shown but "/home" is.
+    |
+    */
+    'default_locale'      => 'nl',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Route options
+    |--------------------------------------------------------------------------
+    |
+    | Route parameter key: the route parameter thus: "{locale}/home".
+    | Route name prefix: the prefix for the route name thus: "localized.home".
+    */
+    'route_parameter_key' => 'locale',
+    'route_name_prefix'   => 'localized',
 ];
