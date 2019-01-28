@@ -32,13 +32,13 @@ class LocaleSelector
     public function handle($request, Closure $next)
     {
         // The admin routes are excluded.
-        if ($request->is($this->config->get(''))) {
+        if ($request->is($this->config->get('localize.excluded_routes'))) {
             return $next($request);
         }
 
         // We don't have to do anything when the locale is null,
         // Given that our default locale is already set.
-        if (null !== ($locale = $request->route('locale'))) {
+        if (null !== ($locale = $request->route($this->config->get('localize.route_parameter_key')))) {
             $this->config->set('app.locale', $locale);
         }
 
