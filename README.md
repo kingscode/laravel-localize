@@ -1,0 +1,2 @@
+# laravel-localize
+Simple localization.
