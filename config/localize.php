@@ -7,10 +7,10 @@ return [
     | Default Locale
     |--------------------------------------------------------------------------
     |
-    | This option makes it so that "/nl/home" is never shown but "/home" is.
+    | This option makes it so that "/en/home" is never shown but "/home" is.
     |
     */
-    'default_locale'      => 'nl',
+    'default_locale'      => 'en',
 
     /*
     |--------------------------------------------------------------------------
