@@ -81,7 +81,7 @@ class UrlGenerator extends BaseUrlGenerator
     {
         $currentLocale = $this->config->get('app.locale');
 
-        if ($this->config->get('localization.default_locale') === $currentLocale) {
+        if ($this->config->get('localize.default_locale') === $currentLocale) {
             return [
                 $name,
                 $parameters,
@@ -91,7 +91,7 @@ class UrlGenerator extends BaseUrlGenerator
         array_unshift($parameters, $currentLocale);
 
         return [
-            $this->config->get('localization.route_name_prefix') . '.' . $name,
+            $this->config->get('localize.route_name_prefix') . '.' . $name,
             $parameters,
         ];
     }

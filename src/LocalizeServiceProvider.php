@@ -34,7 +34,10 @@ class LocalizeServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/localize.php', 'localize');
 
-        $this->app->extend(UrlGeneratorContract::class, function (BaseUrlGenerator $urlGenerator, Container $container) {
+        $this->app->extend(UrlGeneratorContract::class, function (
+            BaseUrlGenerator $urlGenerator,
+            Container $container
+        ) {
             return new UrlGenerator(
                 $this->app->make(Router::class)->getRoutes(),
                 $urlGenerator->getRequest(),
