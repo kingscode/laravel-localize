@@ -62,7 +62,7 @@ use Illuminate\Routing\Router;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    public function register()
+    public function map()
     {
         // Web routes without localization, like a "/file/{file}" route or such.
         $this->mapWebRoutes();
