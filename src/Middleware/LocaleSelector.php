@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace KoenHoeijmakers\LaravelLocalize\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Config\Repository;
