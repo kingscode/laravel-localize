@@ -1,11 +1,11 @@
 <?php
 
-namespace KoenHoeijmakers\LaravelLocalize\Tests\Feature;
+namespace KingsCode\LaravelLocalize\Tests\Feature;
 
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Routing\Router;
-use KoenHoeijmakers\LaravelLocalize\Middleware\LocaleSelector;
-use KoenHoeijmakers\LaravelLocalize\Tests\TestCase;
+use KingsCode\LaravelLocalize\Middleware\LocaleSelector;
+use KingsCode\LaravelLocalize\Tests\TestCase;
 
 class LocalizeTest extends TestCase
 {
@@ -56,7 +56,7 @@ class LocalizeTest extends TestCase
         /** @var UrlGenerator $urlGenerator */
         $urlGenerator = $this->app->make(UrlGenerator::class);
 
-        $this->assertEquals('https://hoeijmakers.me/nl/home', $urlGenerator->route('home'));
+        $this->assertEquals('https://kingscode.nl/nl/home', $urlGenerator->route('home'));
     }
 
     public function testRouteIsNotLocalizedWhenGeneratedInDefaultLocale()
@@ -64,7 +64,7 @@ class LocalizeTest extends TestCase
         /** @var UrlGenerator $urlGenerator */
         $urlGenerator = $this->app->make(UrlGenerator::class);
 
-        $this->assertEquals('https://hoeijmakers.me/home', $urlGenerator->route('home'));
+        $this->assertEquals('https://kingscode.nl/home', $urlGenerator->route('home'));
     }
 
     public function testNormalRouteIsNotLocalized()
@@ -78,6 +78,6 @@ class LocalizeTest extends TestCase
         /** @var UrlGenerator $urlGenerator */
         $urlGenerator = $this->app->make(UrlGenerator::class);
 
-        $this->assertEquals('https://hoeijmakers.me/non-localized-route', $urlGenerator->route('non-localized-route'));
+        $this->assertEquals('https://kingscode.nl/non-localized-route', $urlGenerator->route('non-localized-route'));
     }
 }

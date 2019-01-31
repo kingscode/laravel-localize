@@ -16,7 +16,7 @@ composer require koenhoeijmakers/laravel-localize
 
 ... and optionally publish the config.
 ```sh
-php artisan vendor:publish --provider="KoenHoeijmakers\LaravelLocalize\LocalizeServiceProvider"
+php artisan vendor:publish --provider="KingsCode\LaravelLocalize\LocalizeServiceProvider"
 ```
 
 Add the middleware to the needed middleware groups, in our case only to the *web* group.

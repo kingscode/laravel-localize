@@ -1,6 +1,6 @@
 <?php
 
-namespace KoenHoeijmakers\LaravelLocalize;
+namespace KingsCode\LaravelLocalize;
 
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Http\Request;

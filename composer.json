@@ -20,18 +20,18 @@
     },
     "autoload": {
         "psr-4": {
-            "KoenHoeijmakers\\LaravelLocalize\\": "src/"
+            "KingsCode\\LaravelLocalize\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "KoenHoeijmakers\\LaravelLocalize\\Tests\\": "tests/"
+            "KingsCode\\LaravelLocalize\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "KoenHoeijmakers\\LaravelLocalize\\LocalizeServiceProvider"
+                "KingsCode\\LaravelLocalize\\LocalizeServiceProvider"
             ]
         }
     }

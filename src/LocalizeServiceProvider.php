@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace KoenHoeijmakers\LaravelLocalize;
+namespace KingsCode\LaravelLocalize;
 
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Container\Container;

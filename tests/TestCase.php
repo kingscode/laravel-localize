@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace KoenHoeijmakers\LaravelLocalize\Tests;
+namespace KingsCode\LaravelLocalize\Tests;
 
-use KoenHoeijmakers\LaravelLocalize\LocalizeServiceProvider;
+use KingsCode\LaravelLocalize\LocalizeServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra

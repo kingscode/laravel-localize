@@ -19,6 +19,6 @@
         </whitelist>
     </filter>
     <php>
-        <env name="APP_URL" value="https://hoeijmakers.me"/>
+        <env name="APP_URL" value="https://kingscode.nl"/>
     </php>
 </phpunit>
