@@ -19,6 +19,35 @@ composer require koenhoeijmakers/laravel-localize
 php artisan vendor:publish --provider="KoenHoeijmakers\LaravelLocalize\LocalizeServiceProvider"
 ```
 
+Add the middleware to the needed middleware groups, in our case only to the *web* group.
+
+```php
+<?php
+
+namespace App\Http;
+
+class Kernel extends HttpKernel
+{
+    ...
+
+    /**
+     * The application's route middleware groups.
+     *
+     * @var array
+     */
+    protected $middlewareGroups = [
+        'web' => [
+            ...
+            LocaleSelector::class,     // <<<<<< Here it is.
+            SubstituteBindings::class, // Its best to register before substitute bindings.
+            ...
+        ],
+    ];
+    
+    ...
+}
+```
+
 Now you must register the route file that holds your localized routes, you will do this twice: 
 - Once without a prefix and prefixed name.
 - Once with a prefix and prefixed name.
