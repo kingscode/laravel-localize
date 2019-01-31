@@ -6,7 +6,7 @@
 [![license](https://img.shields.io/github/license/kingscode/laravel-localize.svg?colorB=brightgreen)](https://github.com/kingscode/laravel-localize)
 [![Packagist](https://img.shields.io/packagist/dt/kingscode/laravel-localize.svg?colorB=brightgreen)](https://packagist.org/packages/kingscode/laravel-localize)
 
-An as minimalistic as possible localization package that works via `/en/` `/nl/` routing.
+An as minimalistic as possible localization package, makes it so the `app.locale` is set to `nl` in the case of `/nl/home`.
 
 ## Installation
 Require the package.
