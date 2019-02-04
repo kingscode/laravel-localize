@@ -31,10 +31,16 @@ class LocaleSelector
      */
     public function handle($request, Closure $next)
     {
+        $parameterKey = $this->config->get('localize.route_parameter_key');
+
         // We don't have to do anything when the locale is null,
         // Given that our default locale is already set.
-        if (null !== ($locale = $request->route($this->config->get('localize.route_parameter_key')))) {
+        if (null !== ($locale = $request->route()->parameter($parameterKey))) {
             $this->config->set('app.locale', $locale);
+        }
+
+        if ($this->config->get('localize.route_forget_parameter') === true) {
+            $request->route()->forgetParameter($parameterKey);
         }
 
         return $next($request);
