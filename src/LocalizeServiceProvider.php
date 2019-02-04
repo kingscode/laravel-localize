@@ -21,7 +21,7 @@ class LocalizeServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . ' /../config/localize.php' => config_path('localize.php'),
+            __DIR__ . '/../config/localize.php' => config_path('localize.php'),
         ], 'config');
     }
 

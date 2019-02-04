@@ -62,7 +62,7 @@ use Illuminate\Routing\Router;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    public function register()
+    public function map()
     {
         // Web routes without localization, like a "/file/{file}" route or such.
         $this->mapWebRoutes();
@@ -96,9 +96,9 @@ class RouteServiceProvider extends ServiceProvider
         $router->middleware('web')
             ->namespace($this->namespace)
             // We add the prefix.
-            ->prefix('{' . $config->get('localization.route_parameter_key') . '}')
+            ->prefix('{' . $config->get('localize.route_parameter_key') . '}')
             // And the name prefix.
-            ->name($config->get('localization.route_name_prefix') . '.')
+            ->name($config->get('localize.route_name_prefix') . '.')
             ->group(base_path('routes/localized.web.php'));
     }
 }
