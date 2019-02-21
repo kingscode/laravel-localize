@@ -37,7 +37,19 @@ class LocalizeTest extends TestCase
 
         $response->assertStatus(200)->assertSee('localized');
 
-        $this->assertEquals('nl', $this->app->getLocale());
+        $this->assertSame('nl', $this->app->getLocale());
+    }
+
+    public function testTranslatorLocaleIsSetWhenLocalizedRouteIsHit()
+    {
+        $currentTranslatorLocale = $this->app->make('translator')->getLocale();
+
+        $this->get('nl/home');
+
+        $newTranslatorLocale = $this->app->make('translator')->getLocale();
+
+        $this->assertNotSame($currentTranslatorLocale, $newTranslatorLocale);
+        $this->assertSame('nl', $newTranslatorLocale);
     }
 
     public function testLocaleIsDefaultWhenNonLocalizedRouteIsHit()
@@ -46,7 +58,7 @@ class LocalizeTest extends TestCase
 
         $response->assertStatus(200)->assertSee('non-localized');
 
-        $this->assertEquals('en', $this->app->getLocale());
+        $this->assertSame('en', $this->app->getLocale());
     }
 
     public function testRouteIsLocalizedWhenGeneratedInOtherLocale()
@@ -56,7 +68,7 @@ class LocalizeTest extends TestCase
         /** @var UrlGenerator $urlGenerator */
         $urlGenerator = $this->app->make(UrlGenerator::class);
 
-        $this->assertEquals('https://kingscode.nl/nl/home', $urlGenerator->route('home'));
+        $this->assertSame('https://kingscode.nl/nl/home', $urlGenerator->route('home'));
     }
 
     public function testRouteIsNotLocalizedWhenGeneratedInDefaultLocale()
@@ -64,7 +76,7 @@ class LocalizeTest extends TestCase
         /** @var UrlGenerator $urlGenerator */
         $urlGenerator = $this->app->make(UrlGenerator::class);
 
-        $this->assertEquals('https://kingscode.nl/home', $urlGenerator->route('home'));
+        $this->assertSame('https://kingscode.nl/home', $urlGenerator->route('home'));
     }
 
     public function testNormalRouteIsNotLocalized()
@@ -78,6 +90,6 @@ class LocalizeTest extends TestCase
         /** @var UrlGenerator $urlGenerator */
         $urlGenerator = $this->app->make(UrlGenerator::class);
 
-        $this->assertEquals('https://kingscode.nl/non-localized-route', $urlGenerator->route('non-localized-route'));
+        $this->assertSame('https://kingscode.nl/non-localized-route', $urlGenerator->route('non-localized-route'));
     }
 }

@@ -4,6 +4,7 @@ namespace KingsCode\LaravelLocalize\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Config\Repository;
+use Illuminate\Contracts\Translation\Translator;
 
 class LocaleSelector
 {
@@ -13,13 +14,20 @@ class LocaleSelector
     protected $config;
 
     /**
+     * @var \Illuminate\Contracts\Translation\Translator
+     */
+    protected $translator;
+
+    /**
      * LocaleSelector constructor.
      *
-     * @param \Illuminate\Contracts\Config\Repository $config
+     * @param \Illuminate\Contracts\Config\Repository      $config
+     * @param \Illuminate\Contracts\Translation\Translator $translator
      */
-    public function __construct(Repository $config)
+    public function __construct(Repository $config, Translator $translator)
     {
         $this->config = $config;
+        $this->translator = $translator;
     }
 
     /**
@@ -37,6 +45,8 @@ class LocaleSelector
         // Given that our default locale is already set.
         if (null !== ($locale = $request->route()->parameter($parameterKey))) {
             $this->config->set('app.locale', $locale);
+
+            $this->translator->setLocale($locale);
         }
 
         if ($this->config->get('localize.route_forget_parameter') === true) {
