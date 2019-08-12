@@ -86,11 +86,11 @@ class RouteServiceProvider extends ServiceProvider
         // We'll need a router to register routes duh.
         $router = $this->app->make(Router::class);
         
-        // We need our class the determine the right regex for the where statement
+        /** * @var Localize $localize */
         $localize = $this->app->make(Localize::class);
         
         // Okay so here is an IMPORTANT part.
-        // Register the {locale} routes first otherwise {locale}/{any} will not be reachable and {any} will catch it.
+        // Register the {locale} routes first otherwise {locale}/{any} will not be reachable and {any} will catch everything.
         $router->middleware('web')
             ->namespace($this->namespace)
             ->prefix('{' . $config->get('localize.route_parameter_key') . '}') // We add the prefix.
