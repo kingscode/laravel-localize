@@ -86,7 +86,7 @@ class RouteServiceProvider extends ServiceProvider
         // We'll need a router to register routes duh.
         $router = $this->app->make(Router::class);
         
-        /** * @var Localize $localize */
+        /** @var Localize $localize */
         $localize = $this->app->make(Localize::class);
         
         // Okay so here is an IMPORTANT part.

@@ -28,5 +28,5 @@ return [
     'route_parameter_key'    => 'locale',
     'route_name_prefix'      => 'localized',
     'route_forget_parameter' => true,
-	'route_prefix_options' 	 => ['nl', 'en'],
+	'route_prefix_options' 	 => ['nl', 'de'],
 ];
