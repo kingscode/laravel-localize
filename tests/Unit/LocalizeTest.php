@@ -5,13 +5,15 @@ namespace KingsCode\LaravelLocalize\Tests\Unit;
 
 use  Illuminate\Contracts\Config\Repository as Config;
 use KingsCode\LaravelLocalize\Localize;
+use KingsCode\LaravelLocalize\Tests\TestCase;
 
-class LocalizeTest
+class LocalizeTest extends TestCase
 {
     private $languages = ['nl', 'en', 'de', 'es', 'it'];
 
-    public function setUp()
+    public function setUp(): void
     {
+        parent::setUp();
         $config = $this->app->make(Config::class);
         $config->set('localize.route_prefix_options', $this->languages);
     }
@@ -26,7 +28,7 @@ class LocalizeTest
         $result = $localize->getLocalePrefixes();
         
         //Assert
-        $result->assertEqual($result, $this->languages);
+        $this->assertEquals($result, $this->languages);
     }
     
     /** @test */
@@ -40,6 +42,6 @@ class LocalizeTest
         $result = $localize->getRouteRegex();
 
         //Assert
-        $result->assertEqual($result, $expectedRegex);
+        $this->assertEquals($result, $expectedRegex);
     }
 }

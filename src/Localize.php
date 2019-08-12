@@ -1,18 +1,20 @@
 <?php
 
-
 namespace KingsCode\LaravelLocalize;
 
-use Illuminate\Contracts\Config\Repository;
+use Illuminate\Contracts\Config\Repository as Config;
 
 class Localize
 {
     /**
-     * @var \Illuminate\Contracts\Config\Repository
+     * @var Config
      */
     protected $config;
 
-    public function __construct(Repository $config)
+    /**
+     * @param Config $config
+     */
+    public function __construct(Config $config)
     {
         $this->config = $config;
     }
@@ -36,20 +38,5 @@ class Localize
     {
         $options = implode('|', array_filter($this->getLocalePrefixes() ?? []));
         return "^($options)$";
-    }
-
-    /**
-     * @param Request|null $request
-     * @return mixed
-     */
-    public function getLocaleFromRequest(Request $request = null)
-    {
-        if ($request === null) {
-            $request = request();
-        }
-
-        return $request->route()->originalParameter(
-            $this->config->get('lovalize.route_parameter_key', 'locale')
-        );
     }
 }
