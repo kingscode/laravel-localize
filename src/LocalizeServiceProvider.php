@@ -44,5 +44,9 @@ class LocalizeServiceProvider extends ServiceProvider
                 $container->make(Repository::class)
             );
         });
+
+        $this->app->singleton(Localize::class, function ($app) {
+            return new Localize($app->make(Repository::class));
+        });
     }
 }
