@@ -59,6 +59,7 @@ This makes it so that your default locale can use `/` instead of being forced to
 
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Routing\Router;
+use KingsCode\LaravelLocalize\Localize;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -85,20 +86,20 @@ class RouteServiceProvider extends ServiceProvider
         // We'll need a router to register routes duh.
         $router = $this->app->make(Router::class);
         
+        /** @var Localize $localize */
+        $localize = $this->app->make(Localize::class);
+        
         // Okay so here is an IMPORTANT part.
-        // The normal routes, thus without prefix and prefixed name must be registered first.
-        // If this is not the case then the prefix is going to catch all your routes like `/pizza`
-        // Because `/{locale}` is registered before `/pizza`.
+        // Register the {locale} routes first otherwise {locale}/{any} will not be reachable and {any} will catch everything.
         $router->middleware('web')
             ->namespace($this->namespace)
+            ->prefix('{' . $config->get('localize.route_parameter_key') . '}') // We add the prefix.
+            ->where([$config->get('localize.route_parameter_key') => $localize->getRouteRegex()])
+            ->name($config->get('localize.route_name_prefix') . '.') // And the name prefix.
             ->group(base_path('routes/localized.web.php'));
-
+        
         $router->middleware('web')
             ->namespace($this->namespace)
-            // We add the prefix.
-            ->prefix('{' . $config->get('localize.route_parameter_key') . '}')
-            // And the name prefix.
-            ->name($config->get('localize.route_name_prefix') . '.')
             ->group(base_path('routes/localized.web.php'));
     }
 }

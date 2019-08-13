@@ -7,6 +7,7 @@ namespace KingsCode\LaravelLocalize;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Routing\UrlGenerator as UrlGeneratorContract;
+use Illuminate\Foundation\Application;
 use Illuminate\Routing\Router;
 use Illuminate\Routing\UrlGenerator as BaseUrlGenerator;
 use Illuminate\Support\ServiceProvider;
@@ -43,6 +44,10 @@ class LocalizeServiceProvider extends ServiceProvider
                 $urlGenerator->getRequest(),
                 $container->make(Repository::class)
             );
+        });
+
+        $this->app->singleton(Localize::class, function (Application $app) {
+            return new Localize($app->make(Repository::class));
         });
     }
 }
