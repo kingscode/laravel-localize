@@ -1,20 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KingsCode\LaravelLocalize;
 
-use Illuminate\Contracts\Config\Repository as Config;
+use Illuminate\Contracts\Config\Repository;
+use function implode;
 
 class Localize
 {
     /**
-     * @var Config
+     * @var \Illuminate\Contracts\Config\Repository
      */
     protected $config;
 
     /**
-     * @param Config $config
+     * @param \Illuminate\Contracts\Config\Repository $config
      */
-    public function __construct(Config $config)
+    public function __construct(Repository $config)
     {
         $this->config = $config;
     }
@@ -36,7 +39,6 @@ class Localize
      */
     public function getRouteRegex(): string
     {
-        $options = implode('|', array_filter($this->getLocalePrefixes() ?? []));
-        return "^($options)$";
+        return sprintf("^(%s)$", implode('|', $this->getLocalePrefixes()));
     }
 }

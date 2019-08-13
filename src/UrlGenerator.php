@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KingsCode\LaravelLocalize;
 
 use Illuminate\Contracts\Config\Repository;
@@ -39,9 +41,9 @@ class UrlGenerator extends BaseUrlGenerator
     /**
      * Get the URL to a named route.
      *
-     * @param  string $name
-     * @param  mixed  $parameters
-     * @param  bool   $absolute
+     * @param string $name
+     * @param mixed  $parameters
+     * @param bool   $absolute
      * @return string
      *
      * @throws \InvalidArgumentException

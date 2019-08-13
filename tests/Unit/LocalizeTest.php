@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace KingsCode\LaravelLocalize\Tests\Unit;
 
@@ -14,34 +15,30 @@ class LocalizeTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+
         $config = $this->app->make(Config::class);
+
         $config->set('localize.route_prefix_options', $this->languages);
     }
-    
-    /** @test */
-    public function get_locale_prefixes_returns_correct_array()
+
+    public function testGetLocalePrefixesReturnsCorrectArray()
     {
-        //Arrange
         $localize = $this->app->make(Localize::class);
-        
-        //Act
+
         $result = $localize->getLocalePrefixes();
-        
-        //Assert
+
         $this->assertEquals($result, $this->languages);
     }
     
     /** @test */
-    public function get_route_regex_returns_correct_regex()
+    public function testGetRouteRegexReturnsCorrectRegex()
     {
-        //Arrange
+        /** @var Localize $localize */
         $localize = $this->app->make(Localize::class);
         $expectedRegex = '^(nl|en|de|es|it)$';
 
-        //Act
         $result = $localize->getRouteRegex();
 
-        //Assert
         $this->assertEquals($result, $expectedRegex);
     }
 }
